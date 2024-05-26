@@ -42,12 +42,6 @@ object CompassHelper {
         return atan2(Hy.toDouble(), My.toDouble()).toFloat()
     }
 
-    fun calculateMagneticDeclination(latitude: Double, longitude: Double, altitude: Double): Float {
-        val geoMag = TSAGeoMag()
-        return geoMag
-                .getDeclination(latitude, longitude, geoMag.decimalYear(GregorianCalendar()), altitude).toFloat()
-    }
-
     fun convertRadtoDeg(rad: Float): Float {
         return (rad / Math.PI).toFloat() * 180
     }

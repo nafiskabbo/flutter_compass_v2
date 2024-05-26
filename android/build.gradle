@@ -28,7 +28,7 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace "com.hemanthraj.fluttercompass"
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 20

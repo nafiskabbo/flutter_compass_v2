@@ -19,13 +19,13 @@
 package com.hemanthraj.fluttercompass.model
 
 
-enum class CardinalDirection {
-    NORTH,
-    NORTHEAST,
-    EAST,
-    SOUTHEAST,
-    SOUTH,
-    SOUTHWEST,
-    WEST,
-    NORTHWEST
+enum class CardinalDirection(val label: String) {
+    NORTH("N"),
+    NORTHEAST("NE"),
+    EAST("E"),
+    SOUTHEAST("SE"),
+    SOUTH("S"),
+    SOUTHWEST("SW"),
+    WEST("W"),
+    NORTHWEST("NW")
 }

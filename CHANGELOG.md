@@ -1,3 +1,7 @@
+## 1.1.0
+* Updated dependencies
+* Update the Android implementation
+
 ## 1.0.3
 * Fix ios pod issue
 

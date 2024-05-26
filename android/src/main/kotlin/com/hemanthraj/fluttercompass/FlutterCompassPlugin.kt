@@ -23,7 +23,6 @@ import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.EventChannel.EventSink
 import kotlin.math.abs
 
-
 class FlutterCompassPlugin : FlutterPlugin, EventChannel.StreamHandler {
     private var compassSensorEventListener: SensorEventListener? = null
     private var display: Display? = null
@@ -71,12 +70,14 @@ class FlutterCompassPlugin : FlutterPlugin, EventChannel.StreamHandler {
 
     private fun getSensors(context: Context) {
         display = (context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager)
-                .getDisplay(Display.DEFAULT_DISPLAY)
+            .getDisplay(Display.DEFAULT_DISPLAY)
         sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         rotationSensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
         if (rotationSensor == null) {
-            Log.d(TAG, "Rotation vector sensor not supported on device, "
-                    + "falling back to accelerometer and magnetic field.")
+            Log.d(
+                TAG, "Rotation vector sensor not supported on device, "
+                        + "falling back to accelerometer and magnetic field."
+            )
             accelerometerSensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         }
         magneticFieldSensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
@@ -165,6 +166,7 @@ class FlutterCompassPlugin : FlutterPlugin, EventChannel.StreamHandler {
             val magneticAzimuth = MathUtils.calculateAzimuth(rotationVector, displayRotation)
 
             notifyCompassChangeListeners(magneticAzimuth.degrees.toDouble())
+//            notifyCompassChangeListeners(magneticAzimuth.degrees.toDouble(), magneticAzimuth.cardinalDirection)
         }
 
         private fun getDisplayRotation(): DisplayRotation {
@@ -177,7 +179,7 @@ class FlutterCompassPlugin : FlutterPlugin, EventChannel.StreamHandler {
         }
 
         private fun notifyCompassChangeListeners(degrees: Double) {
-            if(degrees.isNaN()) {
+            if (degrees.isNaN()) {
                 return
             }
 
@@ -185,6 +187,8 @@ class FlutterCompassPlugin : FlutterPlugin, EventChannel.StreamHandler {
             data[0] = degrees
             data[1] = 0.0
             data[2] = accuracy.toDouble()
+//            data[3] = magneticReading
+
 
             eventSink.success(data)
             lastHeading = degrees.toFloat()
@@ -192,21 +196,10 @@ class FlutterCompassPlugin : FlutterPlugin, EventChannel.StreamHandler {
 
         private val accuracy: Int
             get() = when (lastAccuracySensorStatus) {
-                SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> {
-                    15
-                }
-
-                SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> {
-                    30
-                }
-
-                SensorManager.SENSOR_STATUS_ACCURACY_LOW -> {
-                    45
-                }
-
-                else -> {
-                    -1
-                }
+                SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> 15
+                SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> 30
+                SensorManager.SENSOR_STATUS_ACCURACY_LOW -> 45
+                else -> -1
             }
 
         /**
