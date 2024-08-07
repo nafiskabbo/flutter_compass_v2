@@ -11,9 +11,6 @@ environment:
   sdk: ">=2.15.0 <4.0.0"
   flutter: ">=1.12.0"
 
-dependency_overrides:
-  meta: ^1.15.0
-
 flutter:
   plugin:
     platforms:
