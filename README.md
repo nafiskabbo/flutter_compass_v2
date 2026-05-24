@@ -4,7 +4,7 @@
 
 A Flutter compass plugin using device sensors. The heading varies from 0–360°, where 0 is north.
 
-Community-maintained fork of [medyas/flutter_compass_v2](https://github.com/medyas/flutter_compass_v2), republished under a new name for ongoing maintenance and Flutter 3.44+ compatibility.
+Community-maintained fork of [medyas/flutter_compass_v2](https://github.com/medyas/flutter_compass_v2) (lineage from [hemanthrajv/flutter_compass](https://github.com/hemanthrajv/flutter_compass)), republished as **`flutter_device_compass`** on pub.dev for ongoing maintenance and Flutter 3.44+ compatibility.
 
 _Note: On Android, `null` heading is returned when no compass sensor is available._
 
@@ -14,7 +14,7 @@ Add `flutter_device_compass` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_device_compass: ^1.0.0
+  flutter_device_compass: ^2.0.0
 ```
 
 Import and listen:
