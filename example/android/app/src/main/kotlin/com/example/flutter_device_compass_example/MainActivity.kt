@@ -1,4 +1,4 @@
-package com.example.flutter_compass_v2_example
+package com.example.flutter_device_compass_example
 
 import io.flutter.embedding.android.FlutterActivity
 

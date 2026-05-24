@@ -62,13 +62,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_compass_v2:
+  flutter_device_compass:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "1.2.0"
+    version: "1.0.0"
   flutter_driver:
     dependency: transitive
     description: flutter

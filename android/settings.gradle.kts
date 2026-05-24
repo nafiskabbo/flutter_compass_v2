@@ -1,1 +1,1 @@
-rootProject.name = "flutter_compass_v2"
+rootProject.name = "flutter_device_compass"

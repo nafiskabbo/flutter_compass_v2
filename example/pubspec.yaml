@@ -1,5 +1,5 @@
-name: flutter_compass_v2_example
-description: Demonstrates how to use the flutter_compass_v2 plugin.
+name: flutter_device_compass_example
+description: Demonstrates how to use the flutter_device_compass plugin.
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_compass_v2:
+  flutter_device_compass:
     path: ../
   permission_handler: ^11.3.1
 

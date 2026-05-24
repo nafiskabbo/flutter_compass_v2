@@ -1,4 +1,4 @@
-library flutter_compass_v2;
+library flutter_device_compass;
 
 export 'src/compass_event.dart';
 export 'src/flutter_compass.dart';
