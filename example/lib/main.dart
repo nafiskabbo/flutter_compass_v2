@@ -4,15 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_compass_v2/flutter_compass_v2.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
-  const MyApp({
-    Key? key,
-  }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -23,7 +21,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
     _fetchPermissionStatus();
   }
 
@@ -35,18 +32,20 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Flutter Compass'),
         ),
-        body: Builder(builder: (context) {
-          if (_hasPermissions) {
-            return Column(
-              children: <Widget>[
-                _buildManualReader(),
-                Expanded(child: _buildCompass()),
-              ],
-            );
-          } else {
-            return _buildPermissionSheet();
-          }
-        }),
+        body: Builder(
+          builder: (context) {
+            if (_hasPermissions) {
+              return Column(
+                children: <Widget>[
+                  _buildManualReader(),
+                  Expanded(child: _buildCompass()),
+                ],
+              );
+            } else {
+              return _buildPermissionSheet();
+            }
+          },
+        ),
       ),
     );
   }
@@ -57,7 +56,6 @@ class _MyAppState extends State<MyApp> {
       child: Row(
         children: <Widget>[
           ElevatedButton(
-            child: Text('Read Value'),
             onPressed: () async {
               final CompassEvent tmp = await FlutterCompass.events!.first;
               setState(() {
@@ -65,6 +63,7 @@ class _MyAppState extends State<MyApp> {
                 _lastReadAt = DateTime.now();
               });
             },
+            child: const Text('Read Value'),
           ),
           Expanded(
             child: Padding(
@@ -98,32 +97,31 @@ class _MyAppState extends State<MyApp> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }
 
-        double? direction = snapshot.data!.heading;
+        final double? direction = snapshot.data!.heading;
 
-        // if direction is null, then device does not support this sensor
-        // show error message
-        if (direction == null)
-          return Center(
-            child: Text("Device does not have sensors !"),
+        if (direction == null) {
+          return const Center(
+            child: Text('Device does not have sensors!'),
           );
+        }
 
         return Material(
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           clipBehavior: Clip.antiAlias,
           elevation: 4.0,
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             alignment: Alignment.center,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
             child: Transform.rotate(
-              angle: (direction * (math.pi / 180) * -1),
+              angle: direction * (math.pi / 180) * -1,
               child: Image.asset('assets/compass.jpg'),
             ),
           ),
@@ -137,24 +135,22 @@ class _MyAppState extends State<MyApp> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text('Location Permission Required'),
+          const Text('Location Permission Required'),
           ElevatedButton(
-            child: Text('Request Permissions'),
             onPressed: () {
-              Permission.locationWhenInUse.request().then((ignored) {
+              Permission.locationWhenInUse.request().then((_) {
                 _fetchPermissionStatus();
               });
             },
+            child: const Text('Request Permissions'),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
-            child: Text('Open App Settings'),
             onPressed: () {
-              openAppSettings().then((opened) {
-                //
-              });
+              openAppSettings();
             },
-          )
+            child: const Text('Open App Settings'),
+          ),
         ],
       ),
     );

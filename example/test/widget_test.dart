@@ -1,7 +1,13 @@
-// This is a basic Flutter widget test.
-// To perform an interaction with a widget in your test, use the WidgetTester utility that Flutter
-// provides. For example, you can send tap and scroll gestures. You can also use WidgetTester to
-// find child widgets in the widget tree, read text, and verify that the values of widget properties
-// are correct.
+import 'package:flutter_compass_v2_example/main.dart';
+import 'package:flutter_test/flutter_test.dart';
 
-void main() {}
+void main() {
+  testWidgets('shows permission prompt when location is denied', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MyApp());
+    await tester.pump();
+
+    expect(find.text('Location Permission Required'), findsOneWidget);
+  });
+}
