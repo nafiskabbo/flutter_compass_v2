@@ -1,3 +1,8 @@
+## 2.0.1
+
+- Documentation and README badge aligned with latest pub.dev release (`2.0.1`)
+- No API changes from `2.0.0`
+
 ## 2.0.0
 
 - **Package renamed** from `flutter_compass_v2` to [`flutter_device_compass`](https://pub.dev/packages/flutter_device_compass) for independent publication on pub.dev

@@ -1,6 +1,6 @@
 # flutter_device_compass
 
-[![pub package](https://img.shields.io/pub/v/flutter_device_compass.svg)](https://pub.dev/packages/flutter_device_compass)
+[![pub package](https://img.shields.io/pub/v/flutter_device_compass.svg?logo=dart)](https://pub.dev/packages/flutter_device_compass)
 
 A Flutter compass plugin using device sensors. The heading varies from 0–360°, where 0 is north.
 
@@ -14,7 +14,7 @@ Add `flutter_device_compass` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_device_compass: ^2.0.0
+  flutter_device_compass: ^2.0.1
 ```
 
 Import and listen:
